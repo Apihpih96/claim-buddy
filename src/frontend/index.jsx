@@ -40,7 +40,7 @@ const App = () => {
       { key: 'c', content: it.category },
       { key: 'd', content: it.date || '—' },
       { key: 'a', content: money(data.currency, it.amount) },
-      { key: 'r', content: it.receipt === true ? 'Yes' : it.receipt === false ? 'Missing' : data.attachments.length ? 'Attached' : 'None' },
+      { key: 'r', content: it.receipt === true ? 'Yes' : it.receiptNeeded === false ? 'Not needed' : it.receipt === false ? 'Missing' : data.attachments.length ? 'Attached' : 'None' },
       { key: 'ok', content: money(data.currency, it.allowed) },
     ],
   }));
