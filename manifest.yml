@@ -2,7 +2,9 @@ modules:
   rovo:agent:
     - key: claim-buddy-agent
       name: Claim Buddy
-      description: Checks staff expense claims in Jira against your company's claims policy in Confluence, flags violations and missing receipts, and recommends approve or reject with reasons.
+      description: Checks staff expense claims in Jira against your company's claims
+        policy in Confluence, flags violations and missing receipts, and
+        recommends approve or reject with reasons.
       prompt: resource:agent-prompts;claim-buddy-prompt.txt
       conversationStarters:
         - Check claim CLAIM-1 against our claims policy
@@ -20,18 +22,25 @@ modules:
       name: Get claims policy
       function: getClaimsPolicy
       actionVerb: GET
-      description: Reads the company claims policy (limits per category, receipt rules, submission deadline) from the Confluence page titled "Claims Policy". Falls back to a built-in sample policy when the page is missing.
+      description: Reads the company claims policy (limits per category, receipt
+        rules, submission deadline) from the Confluence page titled "Claims
+        Policy". Falls back to a built-in sample policy when the page is
+        missing.
       inputs:
         pageTitle:
           title: Policy page title
           type: string
           required: false
-          description: Title of the Confluence page holding the policy. Defaults to "Claims Policy".
+          description: Title of the Confluence page holding the policy. Defaults to
+            "Claims Policy".
     - key: check-claim
       name: Check claim against policy
       function: checkClaim
       actionVerb: GET
-      description: Reads one Jira or Jira Service Management claim request, parses its line items (category, amount, date, receipt), checks each against the claims policy and returns violations, missing receipts and a recommended verdict.
+      description: Reads one Jira or Jira Service Management claim request, parses its
+        line items (category, amount, date, receipt), checks each against the
+        claims policy and returns violations, missing receipts and a recommended
+        verdict.
       inputs:
         issueKey:
           title: Issue key
@@ -42,7 +51,9 @@ modules:
       name: List pending claims
       function: listPendingClaims
       actionVerb: GET
-      description: Finds open claim requests (unresolved issues with "claim" or "expense" in the summary or the claim label) and returns a quick policy check for each.
+      description: Finds open claim requests (unresolved issues with "claim" or
+        "expense" in the summary or the claim label) and returns a quick policy
+        check for each.
       inputs:
         projectKey:
           title: Project key
@@ -53,7 +64,9 @@ modules:
       name: Post claim verdict
       function: postClaimVerdict
       actionVerb: UPDATE
-      description: Posts Claim Buddy's policy check as a comment on the claim issue and labels it claim-buddy-approve or claim-buddy-reject. Use only after the user confirms.
+      description: Posts Claim Buddy's policy check as a comment on the claim issue
+        and labels it claim-buddy-approve or claim-buddy-reject. Use only after
+        the user confirms.
       inputs:
         issueKey:
           title: Issue key
@@ -101,7 +114,7 @@ resources:
 app:
   runtime:
     name: nodejs22.x
-  id: ari:cloud:ecosystem::app/00000000-0000-0000-0000-000000000000
+  id: ari:cloud:ecosystem::app/8b60210a-e41d-452f-95ec-813a339b245f
 
 permissions:
   scopes:
