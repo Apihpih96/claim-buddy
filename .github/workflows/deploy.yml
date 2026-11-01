@@ -64,6 +64,9 @@ jobs:
 
       - name: Deploy
         run: forge deploy -e development --non-interactive
+        
+      - name: Deploy to production
+        run: forge deploy -e production --non-interactive
 
       - name: Install on Jira
         run: |
