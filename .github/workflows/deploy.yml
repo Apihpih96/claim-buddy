@@ -46,7 +46,16 @@ jobs:
       - name: Register app (first run only)
         run: |
           if grep -q "app/00000000-0000-0000-0000-000000000000" manifest.yml; then
-            forge register "Claim Buddy" --accept-terms
+            sudo apt-get update -qq && sudo apt-get install -y expect >/dev/null
+            expect -c 'set timeout 180
+              spawn forge register "Claim Buddy" --accept-terms
+              expect {
+                -re "Name your Developer Space" { send "Apih Dev Space\r"; exp_continue }
+                -re "(?i)select|choose" { send "\r"; exp_continue }
+                eof
+              }
+              catch wait result
+              exit [lindex $result 3]'
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git pull --rebase || true
