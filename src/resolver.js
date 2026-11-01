@@ -1,4 +1,5 @@
-import Resolver from '@forge/resolver';
+import * as ResolverModule from '@forge/resolver';
+const Resolver = ResolverModule.default?.default || ResolverModule.default;
 import { runCheck, postVerdict } from './lib/atlassian';
 
 const resolver = new Resolver();
