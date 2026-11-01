@@ -292,7 +292,7 @@ export function checkClaim({ items, attachmentCount = 0, today = new Date(), pol
 
   const reasons = violations.length || warnings.length
     ? [...violations, ...warnings].map((f) => f.message)
-    : ['All items are within policy limits, dated within the deadline and have receipts.'];
+    : ['All items are within policy limits, dated within the deadline, with receipts wherever the policy needs one.'];
 
   return {
     verdict,
@@ -300,7 +300,7 @@ export function checkClaim({ items, attachmentCount = 0, today = new Date(), pol
     total: +total.toFixed(2),
     allowed: +allowed.toFixed(2),
     itemCount: items.length,
-    items: items.map(({ raw, category, date, amount, receipt, allowed: a }) => ({ category, date, amount, receipt, allowed: a, raw })),
+    items: items.map(({ raw, category, date, amount, receipt, allowed: a }) => ({ category, date, amount, receipt, receiptNeeded: (amount ?? 0) > policy.categories[category].receiptAbove, allowed: a, raw })),
     findings,
     reasons,
     policySource: policy.source,
