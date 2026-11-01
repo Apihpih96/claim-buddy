@@ -9,6 +9,7 @@ resolver.define('check', async ({ context }) => {
   try {
     return await runCheck(issueKey);
   } catch (e) {
+    if (/auth/i.test(`${e?.name} ${e?.code} ${e?.message}`)) throw e; // let Forge show the Allow access prompt    
     return { error: e.message };
   }
 });
