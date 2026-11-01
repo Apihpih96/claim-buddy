@@ -169,6 +169,7 @@ export function parseClaimItems(text, policy = DEFAULT_POLICY) {
       const anyNum = lineNoDate.match(/\b(\d[\d,]*(?:\.\d+)?)\b/);
       if (anyNum) amount = parseAmount(anyNum[1]);
     }
+    if (amount === null && !date && !km) continue; // prose line (e.g. the summary), not a claim item
     let receipt = null;
     if (/receipt\s*[:=]?\s*(yes|attached|ada|y)\b|\bwith receipt\b|📎/i.test(line)) receipt = true;
     else if (/receipt\s*[:=]?\s*(no|missing|none|tiada|n)\b|\bno receipt\b|without receipt/i.test(line)) receipt = false;
