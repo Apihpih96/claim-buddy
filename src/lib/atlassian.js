@@ -1,4 +1,6 @@
-import api, { route } from '@forge/api';
+import * as forgeApi from '@forge/api';
+const { route } = forgeApi;
+const api = { asApp: forgeApi.asApp, asUser: forgeApi.asUser };
 import { DEFAULT_POLICY, parsePolicyFromStorage, adfToText, parseClaimItems, checkClaim, summarise, VERDICT_LABEL } from './policy';
 
 const POLICY_TITLE = 'Claims Policy';
