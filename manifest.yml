@@ -1,0 +1,113 @@
+modules:
+  rovo:agent:
+    - key: claim-buddy-agent
+      name: Claim Buddy
+      description: Checks staff expense claims in Jira against your company's claims policy in Confluence, flags violations and missing receipts, and recommends approve or reject with reasons.
+      prompt: resource:agent-prompts;claim-buddy-prompt.txt
+      conversationStarters:
+        - Check claim CLAIM-1 against our claims policy
+        - Which open claims are missing receipts?
+        - Summarise our claims policy limits
+        - Review all claims waiting for approval
+      actions:
+        - get-claims-policy
+        - check-claim
+        - list-pending-claims
+        - post-claim-verdict
+
+  action:
+    - key: get-claims-policy
+      name: Get claims policy
+      function: getClaimsPolicy
+      actionVerb: GET
+      description: Reads the company claims policy (limits per category, receipt rules, submission deadline) from the Confluence page titled "Claims Policy". Falls back to a built-in sample policy when the page is missing.
+      inputs:
+        pageTitle:
+          title: Policy page title
+          type: string
+          required: false
+          description: Title of the Confluence page holding the policy. Defaults to "Claims Policy".
+    - key: check-claim
+      name: Check claim against policy
+      function: checkClaim
+      actionVerb: GET
+      description: Reads one Jira or Jira Service Management claim request, parses its line items (category, amount, date, receipt), checks each against the claims policy and returns violations, missing receipts and a recommended verdict.
+      inputs:
+        issueKey:
+          title: Issue key
+          type: string
+          required: true
+          description: The key of the claim request issue, for example CLAIM-12.
+    - key: list-pending-claims
+      name: List pending claims
+      function: listPendingClaims
+      actionVerb: GET
+      description: Finds open claim requests (unresolved issues with "claim" or "expense" in the summary or the claim label) and returns a quick policy check for each.
+      inputs:
+        projectKey:
+          title: Project key
+          type: string
+          required: false
+          description: Limit the search to one project, for example CLAIM.
+    - key: post-claim-verdict
+      name: Post claim verdict
+      function: postClaimVerdict
+      actionVerb: UPDATE
+      description: Posts Claim Buddy's policy check as a comment on the claim issue and labels it claim-buddy-approve or claim-buddy-reject. Use only after the user confirms.
+      inputs:
+        issueKey:
+          title: Issue key
+          type: string
+          required: true
+          description: The claim request issue key.
+        verdict:
+          title: Verdict
+          type: string
+          required: true
+          description: approve, reject or needs-info.
+        note:
+          title: Reviewer note
+          type: string
+          required: false
+          description: Optional extra note from the approver.
+
+  jira:issuePanel:
+    - key: claim-buddy-panel
+      resource: panel-ui
+      resolver:
+        function: panelResolver
+      render: native
+      title: Claim Buddy
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+
+  function:
+    - key: getClaimsPolicy
+      handler: index.getClaimsPolicy
+    - key: checkClaim
+      handler: index.checkClaim
+    - key: listPendingClaims
+      handler: index.listPendingClaims
+    - key: postClaimVerdict
+      handler: index.postClaimVerdict
+    - key: panelResolver
+      handler: resolver.handler
+
+resources:
+  - key: agent-prompts
+    path: prompts
+  - key: panel-ui
+    path: src/frontend/index.jsx
+
+app:
+  runtime:
+    name: nodejs22.x
+  id: ari:cloud:ecosystem::app/00000000-0000-0000-0000-000000000000
+
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - read:jira-user
+    - read:confluence-content.summary
+    - read:page:confluence
+    - search:confluence
