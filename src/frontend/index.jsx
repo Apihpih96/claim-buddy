@@ -19,7 +19,7 @@ const App = () => {
 
   const load = () => {
     setData(null);
-    invoke('check').then(setData);
+    invoke('check').then(setData).catch((e) => setData({ error: `Claim Buddy could not load: ${e?.message || e}` }));
   };
   useEffect(load, []);
 
