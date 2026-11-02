@@ -4,6 +4,16 @@ A Forge app for Jira and Jira Service Management with a **Rovo agent** that chec
 
 Built for **Atlassian Codegeist 2026**: category *Apps for Business Teams*, bonus *Best Agents (Rovo)*.
 
+## Install for judges
+
+**[Install Claim Buddy on your Atlassian site (Jira + Confluence)](https://developer.atlassian.com/console/install/8b60210a-e41d-452f-95ec-813a339b245f?signature=AYABeHE20Y1Ye34w9IijQz2H1hAAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucB06C1ne3tKe88RBHRhEOp%2BgAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDDcoueCCCb3Uu%2FPGDwIBEIA72%2FRSm9A1d%2FAHbjWX%2BBwmxuGL4SFOOKRsZIddQ4TtF8OknYpkJikulclWAwb6MI%2F9PcJ0PQIy0g5gZmYAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgE8mWPINjbNR98Ly0egdbG8AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMFtdSW0eVekwIrbhmAgEQgDswizM1%2FNffw3431jxpKBkL6Zv6JKxZTExqt5GL1eXzYfg7TFqYXzvwVbxwx7TrrmAb%2FuzEBgQp5UCHygAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEAcULVeekqWaDWp3LciUUzvsAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAw5Tuk3HZdFuY1dV8QCARCAO6D4NpazCoQBv6v3P9uWVakb3BmRvc%2Bcfrq1ZRI5l0xK6%2BRPpp5CgA47G3%2Bf7xk3jhBmOCU77ry8s0C0AgAAAAAMAAAQAAAAAAAAAAAAAAAAAHuFz%2Fo1tCU60sLKzBNOkm%2F%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADL433brxAMlhkzHYkRTIuIUOXZCqbj41HuY5ELuS0oi0l%2FWQ0GDrzDAAzwd0wyk%2FwFUYqatt5vppfPxQUdmsJMxKV4%3D&product=jira&product=confluence)**
+
+1. Open the link above and pick your Jira Cloud site (add Confluence too for the live policy page).
+2. Optional: create a Confluence page titled **Claims Policy** with a table (Category | Limit | Per | Receipt required above | Notes). Without it, a built-in sample policy is used.
+3. Open any Jira issue that lists claim items, one per line (e.g. `Meals RM45 2026-10-30`), to see the Claim Buddy panel, or chat with the **Claim Buddy** agent in Rovo.
+
+Demo video: https://youtu.be/xPPtG6cqCHc
+
 ## Why
 
 Finance and HR teams in small companies approve claims by eye: open the request, open the policy, compare every line. It's slow, inconsistent and the claimant waits days only to be told a receipt is missing. Claim Buddy puts the policy next to the claim and does the comparison in seconds.
